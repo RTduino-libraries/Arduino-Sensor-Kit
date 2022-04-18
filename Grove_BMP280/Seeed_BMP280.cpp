@@ -1,6 +1,6 @@
 #include "Seeed_BMP280.h"
 
-#define BMP280_DEBUG_PRINT
+//#define BMP280_DEBUG_PRINT
 
 bool BMP280::init(int i2c_addr) {
   uint8_t chip_id = 0;
