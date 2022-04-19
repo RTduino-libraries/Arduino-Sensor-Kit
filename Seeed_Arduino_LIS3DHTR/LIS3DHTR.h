@@ -31,6 +31,8 @@
 #endif
 
 #include <Wire.h>
+#include <SPI.h>
+
 
 #ifndef SEEED_LIS3DHTR_H
 #define SEEED_LIS3DHTR_H
@@ -195,7 +197,7 @@ public:
 
     bool isConnection(void);
 
-    //void begin(SPIClass &comm = SPI, uint8_t sspin = SS); //init
+    void begin(SPIClass &comm = SPI, uint8_t sspin = 10/*SS*/); //init
     void begin(TwoWire &comm = Wire, uint8_t address = LIS3DHTR_DEFAULT_ADDRESS); //init
     void begin(uint8_t address) { begin(Wire, address); };
 
@@ -235,8 +237,8 @@ private:
     int16_t accRange;
     uint8_t commInterface;
     uint8_t chipSelectPin;
-    //SPIClass *_spi_com;
-    //SPISettings _settings;
+    SPIClass *_spi_com;
+    SPISettings _settings;
     TwoWire *_wire_com;
 };
 

@@ -35,60 +35,60 @@ LIS3DHTR<T>::LIS3DHTR()
     
 }
 
-//template <class T>
-//void LIS3DHTR<T>::begin(SPIClass &comm, uint8_t sspin)
-//{
-//    chipSelectPin = sspin;
-//    _spi_com = &comm;
-//    _wire_com = NULL;
-//    pinMode(chipSelectPin, OUTPUT);
-//    digitalWrite(chipSelectPin, HIGH);
+template <class T>
+void LIS3DHTR<T>::begin(SPIClass &comm, uint8_t sspin)
+{
+    chipSelectPin = sspin;
+    _spi_com = &comm;
+    _wire_com = NULL;
+    pinMode(chipSelectPin, OUTPUT);
+    digitalWrite(chipSelectPin, HIGH);
 
-//    // Maximum SPI frequency is 10MHz, Data is read and written MSb first,
-//    // Data is captured on rising edge of clock (CPHA = 0)
-//    // Base value of the clock is HIGH (CPOL = 1)
-//    // MODE3 for 328p operation
-//    SPISettings _settings(10000000, MSBFIRST, SPI_MODE3);
+    // Maximum SPI frequency is 10MHz, Data is read and written MSb first,
+    // Data is captured on rising edge of clock (CPHA = 0)
+    // Base value of the clock is HIGH (CPOL = 1)
+    // MODE3 for 328p operation
+    SPISettings _settings(10000000, MSBFIRST, SPI_MODE3);
 
-//    // start the SPI library:
-//    _spi_com->begin();
+    // start the SPI library:
+    _spi_com->begin();
 
-//    delay(200);
+    delay(200);
 
-//    uint8_t config5 = LIS3DHTR_REG_TEMP_ADC_PD_ENABLED |
-//                      LIS3DHTR_REG_TEMP_TEMP_EN_DISABLED;
+    uint8_t config5 = LIS3DHTR_REG_TEMP_ADC_PD_ENABLED |
+                      LIS3DHTR_REG_TEMP_TEMP_EN_DISABLED;
 
-//    writeRegister(LIS3DHTR_REG_TEMP_CFG, config5);
-//    delay(LIS3DHTR_CONVERSIONDELAY);
+    writeRegister(LIS3DHTR_REG_TEMP_CFG, config5);
+    delay(LIS3DHTR_CONVERSIONDELAY);
 
-//    uint8_t config1 = LIS3DHTR_REG_ACCEL_CTRL_REG1_LPEN_NORMAL | // Normal Mode
-//                      LIS3DHTR_REG_ACCEL_CTRL_REG1_AZEN_ENABLE | // Acceleration Z-Axis Enabled
-//                      LIS3DHTR_REG_ACCEL_CTRL_REG1_AYEN_ENABLE | // Acceleration Y-Axis Enabled
-//                      LIS3DHTR_REG_ACCEL_CTRL_REG1_AXEN_ENABLE;
+    uint8_t config1 = LIS3DHTR_REG_ACCEL_CTRL_REG1_LPEN_NORMAL | // Normal Mode
+                      LIS3DHTR_REG_ACCEL_CTRL_REG1_AZEN_ENABLE | // Acceleration Z-Axis Enabled
+                      LIS3DHTR_REG_ACCEL_CTRL_REG1_AYEN_ENABLE | // Acceleration Y-Axis Enabled
+                      LIS3DHTR_REG_ACCEL_CTRL_REG1_AXEN_ENABLE;
 
-//    writeRegister(LIS3DHTR_REG_ACCEL_CTRL_REG1, config1);
-//    delay(LIS3DHTR_CONVERSIONDELAY);
+    writeRegister(LIS3DHTR_REG_ACCEL_CTRL_REG1, config1);
+    delay(LIS3DHTR_CONVERSIONDELAY);
 
-//    uint8_t config4 = LIS3DHTR_REG_ACCEL_CTRL_REG4_BDU_NOTUPDATED | // Continuous Update
-//                      LIS3DHTR_REG_ACCEL_CTRL_REG4_BLE_LSB |        // Data LSB @ lower address
-//                      LIS3DHTR_REG_ACCEL_CTRL_REG4_HS_DISABLE |      // High Resolution Disable
-//                      LIS3DHTR_REG_ACCEL_CTRL_REG4_ST_NORMAL |      // Normal Mode
-//                      LIS3DHTR_REG_ACCEL_CTRL_REG4_SIM_4WIRE;       // 4-Wire Interface
+    uint8_t config4 = LIS3DHTR_REG_ACCEL_CTRL_REG4_BDU_NOTUPDATED | // Continuous Update
+                      LIS3DHTR_REG_ACCEL_CTRL_REG4_BLE_LSB |        // Data LSB @ lower address
+                      LIS3DHTR_REG_ACCEL_CTRL_REG4_HS_DISABLE |      // High Resolution Disable
+                      LIS3DHTR_REG_ACCEL_CTRL_REG4_ST_NORMAL |      // Normal Mode
+                      LIS3DHTR_REG_ACCEL_CTRL_REG4_SIM_4WIRE;       // 4-Wire Interface
 
-//    writeRegister(LIS3DHTR_REG_ACCEL_CTRL_REG4, config4);
+    writeRegister(LIS3DHTR_REG_ACCEL_CTRL_REG4, config4);
 
-//    delay(LIS3DHTR_CONVERSIONDELAY);
+    delay(LIS3DHTR_CONVERSIONDELAY);
 
-//    setFullScaleRange(LIS3DHTR_RANGE_16G);
-//    setOutputDataRate(LIS3DHTR_DATARATE_400HZ);
-//}
+    setFullScaleRange(LIS3DHTR_RANGE_16G);
+    setOutputDataRate(LIS3DHTR_DATARATE_400HZ);
+}
 
 template <class T>
 void LIS3DHTR<T>::begin(TwoWire &wire, uint8_t address)
 {
     _wire_com = &wire;
     _wire_com->begin();
-//    _spi_com = NULL;
+    _spi_com = NULL;
     devAddr = address;
 
     uint8_t config5 = LIS3DHTR_REG_TEMP_ADC_PD_ENABLED |
@@ -360,22 +360,22 @@ uint16_t LIS3DHTR<T>::readbitADC3(void)
 template <class T>
 void LIS3DHTR<T>::writeRegister(uint8_t reg, uint8_t val)
 {
-//    if (_spi_com != NULL)
-//    {
-//        _spi_com->beginTransaction(_settings);
-//        digitalWrite(chipSelectPin, LOW);
-//        _spi_com->transfer(reg);
-//        _spi_com->transfer(val);
-//        digitalWrite(chipSelectPin, HIGH);
-//        _spi_com->endTransaction();
-//    }
-//    else
-//    {
+    if (_spi_com != NULL)
+    {
+        _spi_com->beginTransaction(_settings);
+        digitalWrite(chipSelectPin, LOW);
+        _spi_com->transfer(reg);
+        _spi_com->transfer(val);
+        digitalWrite(chipSelectPin, HIGH);
+        _spi_com->endTransaction();
+    }
+    else
+    {
         _wire_com->beginTransmission(devAddr);
         _wire_com->write(reg);
         _wire_com->write(val);
         _wire_com->endTransmission();
-//    }
+    }
 }
 
 template <class T>
@@ -386,23 +386,23 @@ void LIS3DHTR<T>::readRegisterRegion(uint8_t *outputPointer, uint8_t reg, uint8_
     uint8_t i = 0;
     uint8_t c = 0;
 
-//    if (_spi_com != NULL)
-//    {
-//        _spi_com->beginTransaction(_settings);
-//        digitalWrite(chipSelectPin, LOW);
-//        _spi_com->transfer(reg | 0x80 | 0x40); //Ored with "read request" bit and "auto increment" bit
-//        while (i < length)                     // slave may send less than requested
-//        {
-//            c = _spi_com->transfer(0x00); // receive a byte as character
-//            *outputPointer = c;
-//            outputPointer++;
-//            i++;
-//        }
-//        digitalWrite(chipSelectPin, HIGH);
-//        _spi_com->endTransaction();        
-//    }
-//    else
-//    {
+    if (_spi_com != NULL)
+    {
+        _spi_com->beginTransaction(_settings);
+        digitalWrite(chipSelectPin, LOW);
+        _spi_com->transfer(reg | 0x80 | 0x40); //Ored with "read request" bit and "auto increment" bit
+        while (i < length)                     // slave may send less than requested
+        {
+            c = _spi_com->transfer(0x00); // receive a byte as character
+            *outputPointer = c;
+            outputPointer++;
+            i++;
+        }
+        digitalWrite(chipSelectPin, HIGH);
+        _spi_com->endTransaction();        
+    }
+    else
+    {
 
         _wire_com->beginTransmission(devAddr);
         reg |= 0x80; //turn auto-increment bit on, bit 7 for I2C
@@ -417,7 +417,7 @@ void LIS3DHTR<T>::readRegisterRegion(uint8_t *outputPointer, uint8_t reg, uint8_
             outputPointer++;
             i++;
         }
-//    }
+    }
 }
 
 template <class T>
@@ -473,5 +473,5 @@ void LIS3DHTR<T>::click(uint8_t c, uint8_t click_thresh, uint8_t limit, uint8_t 
 template <class T>
 LIS3DHTR<T>::operator bool() { return isConnection(); }
 
-//template class LIS3DHTR<SPIClass>;
+template class LIS3DHTR<SPIClass>;
 template class LIS3DHTR<TwoWire>;

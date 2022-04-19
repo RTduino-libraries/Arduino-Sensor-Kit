@@ -7,7 +7,7 @@
 class SensorKit_LIS3DHTR{
 
     LIS3DHTR<TwoWire> LIS;
-    
+
     public:
         SensorKit_LIS3DHTR();
         bool begin();

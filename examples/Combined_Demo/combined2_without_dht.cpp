@@ -1,8 +1,3 @@
-// Combined Demo by Marc MERLIN <marc_soft@merlins.org>
-// Reviewed by Pablo Marqu铆nez  <p.marquinez@arduino.cc>
-// This demo uses all the devices from the Arduino Sensor Kit
-// Showing the values on the Display
-
 #include "Arduino_SensorKit.h"
 
 #define BUZZER 5
@@ -23,12 +18,10 @@ void setup() {
   pinMode(MIC , INPUT);
   pinMode(LIGHT , INPUT);
   pinMode(BUTTON , INPUT);
-  
+
   pinMode(LED, OUTPUT);
   digitalWrite(LED, LOW);
   pinMode(BUZZER, OUTPUT);
-  
-//  Environment.begin();
 
   Oled.begin();
   Oled.setFlipMode(true);
@@ -38,32 +31,32 @@ void setup() {
 }
 
 void loop() {
-  Oled.setFont(u8x8_font_amstrad_cpc_extended_r); 
+  Oled.setFont(u8x8_font_amstrad_cpc_extended_r);
 
   //cursor values are in characters, not pixels
   Oled.setCursor(0, 4);
-  
+
   // If accelerometer and altimeter are queried too close to one another
   // this causes a hang, so we read this first.
-  Oled.print("x:"); 
-  Oled.print(Accelerometer.readX()); 
-  Oled.print(" y:"); 
-  Oled.print(Accelerometer.readY());        
+  Oled.print("x:");
+  Oled.print(Accelerometer.readX());
+  Oled.print(" y:");
+  Oled.print(Accelerometer.readY());
   Oled.setCursor(0, 5);
-  Oled.print("z:"); 
+  Oled.print("z:");
   Oled.print(Accelerometer.readZ());
   Oled.print(" T:");
   Oled.print(Pressure.readTemperature());
   Oled.print("C");
 
   Oled.setCursor(0, 0);
-  Oled.print("But:"); 
+  Oled.print("But:");
 
   pot_value = analogRead(POT);
-  
+
   button_state = digitalRead(BUTTON);
-  Oled.print(button_state); 
-  
+  Oled.print(button_state);
+
   if (button_state == true) {
     digitalWrite(LED, HIGH);
     tone(BUZZER, pot_value);
@@ -71,7 +64,7 @@ void loop() {
     digitalWrite(LED, LOW);
     noTone(BUZZER);
   }
-  
+
   Oled.setCursor(0, 1);
   Oled.print("BuzPot: ");
   Oled.print(pot_value);
@@ -94,7 +87,7 @@ void loop() {
   Oled.print(Pressure.readPressure());
 
   Oled.setCursor(0, 7);
-  Oled.print("Alt:"); 
+  Oled.print("Alt:");
   Oled.print(Pressure.readAltitude());
 
   delay(100);
