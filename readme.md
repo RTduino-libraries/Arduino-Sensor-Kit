@@ -1,4 +1,4 @@
-# Arduino SensorKit Library
+# Arduino SensorKit Library for RTduino
 
 This documentation contains information about the classes and the usage of Arduino_SensorKit library which is primarily used in the [Arduino Sensor Kit](https://store.arduino.cc/sensor-kit-base). This library is a wrapper for other libraries such as
 
@@ -7,7 +7,7 @@ This documentation contains information about the classes and the usage of Ardui
 * [Grove_BMP280](https://github.com/Seeed-Studio/Grove_BMP280) Library for the Barometer
 * [DHT-sensor-library](https://github.com/adafruit/DHT-sensor-library) for the Temperature and Humidity Sensor
 
-The Arduino_SensorKit Library can be downloaded from the Arduino IDE's library manager or from the GitHub repository.
+This library has contained above libraries.
 
 # Sensor Kit Reference
 
@@ -16,8 +16,6 @@ This documentation contains information about the classes and the usage of **Ard
 * [Seeed_Arduino_LIS3DHTR for the 3 Axis Accelerometer](https://github.com/Seeed-Studio/Seeed_Arduino_LIS3DHTR)
 * [Grove_BMP280 Library for the Barometer](https://github.com/Seeed-Studio/Grove_BMP280)
 * [DHT-sensor-library for the Temperature and Humidity Sensor](https://github.com/adafruit/DHT-sensor-library)
-
-The Arduino_SensorKit Library can be downloaded from the Arduino IDE's Library Manager or from the [GitHub repository](https://github.com/arduino-libraries/Arduino_SensorKit)
 
 # Classes
 
