@@ -13,7 +13,7 @@
 //Libraries for components
 #include "Arduino_SensorKit_BMP280.h"   // Pressure
 #include "Arduino_SensorKit_LIS3DHTR.h" // Accel
-//#include "DHT.h"                        // Temp & Humidity
+#include "DHT.h"                        // Temp & Humidity
 #include "U8x8lib.h"                    // OLED Display
 
 //Defines
@@ -28,5 +28,5 @@
 extern U8X8_SSD1306_128X64_NONAME_HW_I2C Oled;
 extern SensorKit_LIS3DHTR Accelerometer;
 extern SensorKit_BMP280 Pressure;
-//extern DHT Environment;
+extern DHT Environment;
 #endif
