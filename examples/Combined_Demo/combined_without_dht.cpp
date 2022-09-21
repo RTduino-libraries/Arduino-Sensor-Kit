@@ -13,7 +13,7 @@ int mic_value;
 int light_value;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin();
 
   pinMode(MIC , INPUT);
   pinMode(LIGHT , INPUT);
