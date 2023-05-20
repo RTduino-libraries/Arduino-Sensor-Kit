@@ -15,12 +15,10 @@ int light_value;
 void setup() {
   Serial.begin();
 
-  pinMode(MIC , INPUT);
-  pinMode(LIGHT , INPUT);
   pinMode(BUTTON , INPUT);
-
   pinMode(LED, OUTPUT);
   digitalWrite(LED, LOW);
+
   pinMode(BUZZER, OUTPUT);
 
   Oled.begin();
