@@ -1,4 +1,5 @@
-#include "Arduino_SensorKit.h"
+#include <RTduino.h>
+#include <Arduino_SensorKit.h>
 
 #define BUZZER 5
 #define BUTTON  4
@@ -12,7 +13,7 @@ bool button_state;
 int mic_value;
 int light_value;
 
-void setup() {
+static void demo1_setup(void) {
   Serial.begin();
 
   pinMode(BUTTON , INPUT);
@@ -28,7 +29,7 @@ void setup() {
   Pressure.begin();
 }
 
-void loop() {
+static void demo1_loop(void) {
   Oled.setFont(u8x8_font_amstrad_cpc_extended_r);
 
   //cursor values are in characters, not pixels
@@ -90,3 +91,4 @@ void loop() {
 
   delay(100);
 }
+RTDUINO_SKETCH_LOADER("Demo1-SenKit", demo1_setup, demo1_loop);

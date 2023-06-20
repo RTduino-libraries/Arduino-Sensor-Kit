@@ -1,0 +1,8 @@
+from building import *
+
+src = Glob('*.cpp')
+cwd = GetCurrentDir()
+CPPPATH = [cwd]
+
+group = DefineGroup('RTduino-demos', src, depend = ['PKG_USING_ARDUINO_SENSOR_KIT'], CPPPATH=CPPPATH)
+Return('group')
